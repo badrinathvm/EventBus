@@ -2,6 +2,11 @@
 
 A lightweight, type-safe event bus for Swift — built for in-process publish/subscribe communication with automatic memory management.
 
+<!-- Place your demo GIFs in the docs/ folder at the repo root, then they appear here automatically. -->
+
+![Live Demo](docs/demo-live.gif)
+![EventBus vs Kafka](docs/demo-kafka.gif)
+
 ## Features
 
 - **Type-safe events** — each event is a distinct `Sendable` struct; no string keys or `Any` casting in call sites
@@ -104,8 +109,8 @@ The included Xcode project ships two tabs:
 
 | Tab | What it shows |
 |-----|---------------|
-| **Live Demo** | Fire `MessageReceivedEvent`, `UserStatusChangedEvent`, and `TypingIndicatorEvent`. Toggle individual subscriptions on/off via bell buttons. Use **Unsubscribe All** to cancel all three at once with a single `unsubscribeAll(for:)` call, then **Subscribe All** to restore them. |
-| **vs Kafka** | Animated side-by-side architecture diagram. Tap **Fire Event** to see EventBus deliver synchronously in ~800 ms while Kafka persists to a durable log and delivers asynchronously over ~2 s. Includes a feature comparison table and "when to use" recommendations. |
+| **Live Demo** (`docs/demo-live.gif`) | Fire `MessageReceivedEvent`, `UserStatusChangedEvent`, and `TypingIndicatorEvent`. Toggle individual subscriptions on/off via bell buttons. Use **Unsubscribe All** to cancel all three at once with a single `unsubscribeAll(for:)` call, then **Subscribe All** to restore them. |
+| **vs Kafka** (`docs/demo-kafka.gif`) | Animated side-by-side architecture diagram. Tap **Fire Event** to see EventBus deliver synchronously in ~800 ms while Kafka persists to a durable log and delivers asynchronously over ~2 s. Includes a feature comparison table and "when to use" recommendations. |
 
 ## Requirements
 
