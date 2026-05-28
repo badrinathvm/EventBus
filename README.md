@@ -15,24 +15,25 @@ A lightweight, type-safe event bus for Swift — built for in-process publish/su
 ### 1. Define an event
 
 ```swift
-struct UserLoggedInEvent: EventBusEvent {
-    let username: String
+struct MessageReceivedEvent: EventBusEvent {
+    let sender: String
+    let text: String
 }
 ```
 
 ### 2. Subscribe
 
 ```swift
-class ProfileViewController: UIViewController {
+class InboxViewController: UIViewController {
     private var token: EventBus.SubscriptionToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         token = EventBus.shared.subscribe(
             owner: self,
-            eventType: UserLoggedInEvent.self
+            eventType: MessageReceivedEvent.self
         ) { owner, event in
-            owner.updateUI(for: event.username)
+            owner.showMessage(from: event.sender, text: event.text)
         }
     }
 }
@@ -43,7 +44,7 @@ The closure captures `owner` weakly — no retain cycles, no manual cleanup need
 ### 3. Publish
 
 ```swift
-EventBus.shared.publish(UserLoggedInEvent(username: "rani"))
+EventBus.shared.publish(MessageReceivedEvent(sender: "Alice", text: "Hey there!"))
 // All active subscribers receive the event synchronously on the calling thread.
 ```
 
